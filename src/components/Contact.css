@@ -1,0 +1,9 @@
+.contact{padding:36px 16px}
+.contact h2{font-size:1.5rem;color:#072034;margin-bottom:12px}
+.contact-form{max-width:720px;display:flex;flex-direction:column;gap:14px;background:#ffffff;padding:18px;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,0.04)}
+.contact-form label{display:flex;flex-direction:column;font-weight:600}
+.contact-form input,.contact-form textarea{padding:12px;border-radius:10px;border:1px solid #e9f1f6;margin-top:8px;transition:box-shadow .14s ease, transform .12s ease}
+.contact-form input:focus,.contact-form textarea:focus{box-shadow:0 8px 28px rgba(6,182,212,0.12);transform:translateY(-2px);outline:none}
+.form-actions{margin-top:6px}
+
+@media (max-width:720px){.contact-form{padding:12px}}

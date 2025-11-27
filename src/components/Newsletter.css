@@ -1,0 +1,7 @@
+.newsletter{padding:28px 16px;margin-top:22px}
+.newsletter-inner{display:flex;gap:18px;align-items:center;justify-content:space-between;background:linear-gradient(90deg,#fff,#f8fffb);padding:16px;border-radius:12px;box-shadow:0 12px 40px rgba(2,6,23,0.04)}
+.newsletter .muted{color:var(--muted)}
+.newsletter-form{display:flex;gap:10px}
+.newsletter-form input{padding:10px 12px;border-radius:10px;border:1px solid #e6eef4}
+.newsletter-form button{padding:10px 14px;border-radius:10px}
+@media (max-width:720px){.newsletter-inner{flex-direction:column;align-items:stretch}}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="#f8fbff"/>
+  <rect x="60" y="60" width="1080" height="680" rx="20" fill="url(#g1)" opacity="0.12"/>
+  <g fill="#034c5a" font-family="sans-serif">
+    <text x="120" y="220" font-size="64" font-weight="700">Evaluación Nutricional</text>
+    <text x="120" y="320" font-size="28">Análisis inicial y plan personalizado</text>
+  </g>
+</svg>

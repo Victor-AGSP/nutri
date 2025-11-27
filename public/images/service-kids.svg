@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#fff"/>
+  <rect x="60" y="60" width="1080" height="680" rx="18" fill="#fffbf0"/>
+  <g fill="#5a3b00" font-family="sans-serif">
+    <text x="120" y="220" font-size="64" font-weight="700">Nutrición Pediátrica</text>
+    <text x="120" y="320" font-size="28">Apoyo para crecimiento y hábitos saludables</text>
+  </g>
+</svg>

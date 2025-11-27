@@ -1,0 +1,17 @@
+.animate-on-scroll{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.2,.9,.3,1),transform .6s cubic-bezier(.2,.9,.3,1);will-change:opacity,transform}
+.animate-on-scroll.in{opacity:1;transform:none}
+.animate-on-scroll.out{opacity:0}
+
+/* variants */
+.fade-left{transform:translateX(-18px)}
+.fade-right{transform:translateX(18px)}
+.animate-on-scroll.fade-left.in,.animate-on-scroll.fade-right.in{transform:none}
+
+/* stagger helper - children should have inline transitionDelay for stagger */
+.staggered > *{opacity:0;transform:translateY(18px);transition:opacity .56s ease, transform .56s ease}
+.staggered.in > *{opacity:1;transform:none}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .animate-on-scroll, .staggered > *{transition:none !important;transform:none !important;opacity:1 !important}
+}

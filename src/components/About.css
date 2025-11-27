@@ -1,0 +1,6 @@
+.about{padding:36px 16px;background:linear-gradient(180deg,#fbfdff,#ffffff)}
+.about h2{margin-bottom:14px;font-size:1.6rem;color:#072034}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+.about .card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,0.06);min-height:120px;display:flex;align-items:center;justify-content:center;font-weight:600}
+
+@media (max-width:900px){.about-grid{grid-template-columns:1fr}}

@@ -1,0 +1,20 @@
+.services-page{padding:36px 16px}
+.services-header{max-width:900px;margin:0 auto 18px;text-align:center}
+.services-header h1{font-size:2rem;margin-bottom:6px}
+.services-header .lead{color:var(--muted)}
+
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px}
+.service-card{background:linear-gradient(180deg,#ffffff,#fbfdff);padding:18px;border-radius:14px;box-shadow:0 16px 48px rgba(2,6,23,0.06);display:flex;flex-direction:column;justify-content:space-between}
+.service-media{width:100%;height:160px;overflow:hidden;border-radius:10px;margin-bottom:12px}
+.service-media img{width:100%;height:100%;object-fit:cover;display:block}
+.service-top{display:flex;align-items:center;gap:12px}
+.service-icon{width:54px;height:54px;border-radius:10px;background:linear-gradient(180deg,#06b6d4,#0891b2);display:inline-flex;align-items:center;justify-content:center;color:white;font-size:22px}
+.service-card h3{margin:0;font-size:1.05rem}
+.price{margin-left:auto;color:var(--muted);font-weight:700}
+.service-desc{margin:12px 0;color:#334454}
+.service-actions{display:flex;gap:10px}
+.service-actions .btn-primary{flex:1}
+.service-actions .btn-ghost{flex:1}
+
+@media (max-width:1100px){.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.services-grid{grid-template-columns:1fr} .service-top{align-items:flex-start}}

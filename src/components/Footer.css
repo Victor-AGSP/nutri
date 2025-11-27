@@ -1,0 +1,12 @@
+
+.site-footer{background:#071029;color:rgba(255,255,255,0.9);padding:22px 0;margin-top:42px;border-top:1px solid rgba(255,255,255,0.02)}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;gap:12px}
+.footer-links a{color:rgba(255,255,255,0.95);text-decoration:none;padding-left:6px;transition:color .18s ease, transform .12s ease}
+.footer-links a:hover{color:var(--accent);transform:translateY(-2px)}
+
+/* subtle social placeholder */
+.footer-social{display:flex;gap:10px}
+.footer-social a{width:36px;height:36px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.8);transition:transform .14s ease, background .14s ease}
+.footer-social a:hover{transform:translateY(-4px);background:rgba(255,255,255,0.06)}
+
+@media (max-width:720px){.footer-inner{flex-direction:column;gap:10px;text-align:center}}
