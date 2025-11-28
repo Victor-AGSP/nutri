@@ -1,3 +1,52 @@
+/* About section styles - professional and engaging */
+.about{padding:48px 16px}
+.about-hero{max-width:980px;margin:0 auto 28px;text-align:center}
+.about-hero .eyebrow{color:var(--accent);font-weight:700;margin-bottom:6px}
+.about-hero h1{font-size:2.2rem;margin:6px 0 12px}
+.about-hero .lead{color:var(--muted);max-width:720px;margin:0 auto}
+
+.about-pillers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0}
+.pillar{background:linear-gradient(180deg,rgba(25,154,150,0.06),rgba(25,154,150,0.02));padding:22px;border-radius:14px;box-shadow:0 12px 28px rgba(2,6,23,0.04);text-align:center}
+.pill-icon{font-size:28px;margin-bottom:8px}
+.pillar h3{margin:4px 0 8px}
+.pillar p{color:var(--muted)}
+
+.about-team{margin:36px 0}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.team-card{padding:18px;border-radius:12px;background:var(--surface);box-shadow:0 14px 36px rgba(2,6,23,0.04);text-align:center}
+.avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(180deg,var(--accent),#0f7b78);color:white;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:1.2rem;margin-bottom:12px}
+.team-card h4{margin:6px 0 4px}
+.team-card .role{font-size:.9rem;color:var(--muted);margin-bottom:8px}
+.team-card .bio{font-size:.9rem;color:var(--muted);margin-bottom:12px}
+.team-card .socials a{margin:0 6px;color:var(--accent);font-weight:600}
+
+.about-stats{margin:28px 0}
+.stats-grid{display:flex;gap:18px;justify-content:center}
+.stat{background:linear-gradient(90deg,#fff,#fbfdff);padding:18px;border-radius:12px;text-align:center;min-width:120px}
+.stat .num{font-weight:800;font-size:1.4rem;color:var(--accent)}
+.stat .label{color:var(--muted);font-size:.9rem}
+
+.about-timeline{margin:36px 0}
+.timeline{position:relative;padding-left:18px;border-left:2px solid rgba(6,182,212,0.08)}
+.timeline-item{position:relative;padding:12px 16px 12px 18px;margin-bottom:8px}
+.timeline-item .marker{position:absolute;left:-11px;top:18px;width:14px;height:14px;border-radius:50%;background:var(--accent);box-shadow:0 6px 16px rgba(25,154,150,0.16)}
+.timeline-item .year{font-weight:700;color:var(--text);margin-bottom:6px}
+.timeline-item .text{color:var(--muted)}
+
+.about-cta{margin:44px 0;text-align:center}
+.cta-card{display:inline-block;padding:28px 36px;border-radius:16px;background:linear-gradient(180deg,rgba(25,154,150,0.08),rgba(25,154,150,0.02));box-shadow:0 20px 50px rgba(6,182,212,0.06)}
+.cta-card h2{margin:0 0 6px}
+.cta-card p{color:var(--muted);margin-bottom:14px}
+.cta-actions{display:flex;gap:12px;justify-content:center}
+
+@media (max-width:1000px){
+  .about-pillers{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:680px){
+  .team-grid{grid-template-columns:1fr}
+  .stats-grid{flex-direction:column;align-items:center}
+}
 .about{padding:36px 16px;background:linear-gradient(180deg,#fbfdff,#ffffff)}
 .about h2{margin-bottom:14px;font-size:1.6rem;color:#072034}
 .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}

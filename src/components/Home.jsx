@@ -8,6 +8,22 @@ import FAQ from './FAQ'
 import Newsletter from './Newsletter'
 
 export default function Home(){
+  const heading = 'Alimenta tu vida: planes prácticos para sentirte mejor'
+  function renderAnimated(text, step = 40){
+    let idx = 0
+    return text.split(' ').map((word, wi) => (
+      <span key={wi} className="word">
+        {word.split('').map((ch) => {
+          const i = idx++
+          return (
+            <span key={i} className="char" style={{ animationDelay: `${i * step}ms` }}>
+              {ch}
+            </span>
+          )
+        })}
+      </span>
+    ))
+  }
   const features = [
     {icon:'🥗', title:'Planes personalizados', text:'Menús que se adaptan a tus horarios y preferencias.'},
     {icon:'📦', title:'Recetas saludables', text:'Recetas fáciles, rápidas y balanceadas para el día a día.'},
@@ -22,7 +38,11 @@ export default function Home(){
 
   const testimonials = [
     {name:'María', text:'Me ayudaron a estructurar comidas reales y sostenibles.'},
-    {name:'Carlos', text:'Resultados reales con un plan sencillo de seguir.'}
+    {name:'Carlos', text:'Resultados reales con un plan sencillo de seguir.'},
+    {name:'Lucía', text:'Las recetas son fáciles y mi familia las adoptó sin problema.'},
+    {name:'Javier', text:'Perdí 6kg en tres meses con seguimiento semanal.'},
+    {name:'Sofía', text:'Aprendí a comer variado sin pasar hambre.'},
+    {name:'Andrés', text:'El plan se adaptó a mis turnos nocturnos y funcionó perfecto.'}
   ]
 
   return (
@@ -30,7 +50,9 @@ export default function Home(){
       <div className="container hero-grid">
         <AnimateOnScroll className="hero-text">
           <div className="eyebrow">Nutrición · Salud · Bienestar</div>
-          <h1>Alimenta tu vida: planes prácticos para sentirte mejor</h1>
+          <h1 className="animated-heading" aria-label={heading}>
+            {renderAnimated(heading, 40)}
+          </h1>
           <p className="lead">Recetas reales, planes adaptados a tus necesidades y acompañamiento para cambios sostenibles.</p>
 
           <div className="hero-cta">
@@ -93,7 +115,7 @@ export default function Home(){
         <AnimateOnScroll>
           <h2>Testimonios</h2>
         </AnimateOnScroll>
-        <TestimonialCarousel items={testimonials} />
+        <TestimonialCarousel items={testimonials} visible={2} interval={6000} />
       </section>
 
       <FAQ items={[

@@ -1,29 +1,125 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './TestimonialCarousel.css'
 
-export default function TestimonialCarousel({ items = [] , interval = 4500}){
+function Column({ items = [], interval = 5000 }){
   const [index, setIndex] = useState(0)
-  useEffect(()=>{
-    if(!items || items.length <= 1) return
-    const t = setInterval(()=> setIndex(i => (i+1) % items.length), interval)
-    return ()=> clearInterval(t)
-  },[items,interval])
+  const [prev, setPrev] = useState(null)
+  const [animating, setAnimating] = useState(false)
+  const [playEnter, setPlayEnter] = useState(false)
+  const timer = useRef(null)
+  const enterTimer = useRef(null)
+  const endTimer = useRef(null)
+  const indexRef = useRef(0)
+  const colRef = useRef(null)
+  const durationRef = useRef(1200) // will read from CSS --testi-dur when mounted
+  const STAGGER = 380 // slightly larger stagger to separate exit/enter and reduce overlap
 
-  if(!items || items.length === 0) return null
+  useEffect(()=>{
+    indexRef.current = index
+  },[index])
+
+  useEffect(()=>{
+    // read CSS duration variable from the component root to keep JS in sync with CSS
+    if(colRef.current){
+      try{
+        const s = getComputedStyle(colRef.current)
+        const d = s.getPropertyValue('--testi-dur')?.trim()
+        if(d){
+          if(d.endsWith('ms')) durationRef.current = parseFloat(d)
+          else if(d.endsWith('s')) durationRef.current = parseFloat(d) * 1000
+        }
+      }catch(e){}
+    }
+
+    if(!items || items.length <= 1) return
+    // use ref inside interval to avoid stale closures
+    timer.current = setInterval(()=>{
+      const current = indexRef.current
+      const next = (current + 1) % items.length
+      // trigger animation sequence
+      // clear any pending timers to avoid overlaps
+      clearTimeout(enterTimer.current)
+      clearTimeout(endTimer.current)
+      setPrev(current)
+      setAnimating(true)
+      setPlayEnter(false)
+      enterTimer.current = setTimeout(()=>{
+        // schedule state update on next frame for smoother paint
+        requestAnimationFrame(()=>{
+          setIndex(next)
+          indexRef.current = next
+          // ensure class toggles happen on next frame
+          requestAnimationFrame(()=> setPlayEnter(true))
+        })
+      }, STAGGER)
+      endTimer.current = setTimeout(()=>{
+        setAnimating(false)
+        setPrev(null)
+        setPlayEnter(false)
+      }, durationRef.current + 120)
+    }, interval)
+    return ()=>{
+      clearInterval(timer.current)
+      clearTimeout(enterTimer.current)
+      clearTimeout(endTimer.current)
+    }
+  },[items, interval, STAGGER])
+
+  function handleNext(){
+    if(animating) return
+    const current = indexRef.current
+    const next = (current + 1) % items.length
+    // clear pending timers to avoid overlapping sequences
+    clearTimeout(enterTimer.current)
+    clearTimeout(endTimer.current)
+    setPrev(current)
+    setAnimating(true)
+    setPlayEnter(false)
+    enterTimer.current = setTimeout(()=>{
+      requestAnimationFrame(()=>{
+        setIndex(next)
+        indexRef.current = next
+        requestAnimationFrame(()=> setPlayEnter(true))
+      })
+    }, STAGGER)
+    endTimer.current = setTimeout(()=>{
+      setAnimating(false)
+      setPrev(null)
+      setPlayEnter(false)
+    }, durationRef.current + 120)
+  }
+
   return (
-    <div className="testi-carousel">
-      <div className="testi-track" style={{transform:`translateX(${-index * 100}%)`}}>
-        {items.map((it, i) => (
-          <figure className="testi-item" key={i}>
-            <blockquote>“{it.text}”</blockquote>
-            <figcaption>{it.name}</figcaption>
-          </figure>
-        ))}
-      </div>
-      <div className="testi-dots">
-        {items.map((_, i) => (
-          <button key={i} className={`dot ${i===index? 'active':''}`} onClick={()=>setIndex(i)} aria-label={`Mostrar testimonio ${i+1}`}></button>
-        ))}
+    <div ref={colRef} className={`testi-col ${animating ? 'anim' : ''}`}>
+      {prev !== null && (
+        <article className="card exit" key={"p"+prev} aria-hidden>
+          <div className="who"><div className="avatar">{(items[prev].name||'').split(' ').map(n=>n[0]).slice(0,2).join('')}</div><div className="meta"><div className="name">{items[prev].name}</div><div className="role">{items[prev].role||''}</div></div></div>
+          <blockquote>“{items[prev].text}”</blockquote>
+        </article>
+      )}
+
+      <article className={`card enter ${playEnter ? 'playing' : ''}`} key={"c"+index} aria-live="polite">
+        <div className="who"><div className="avatar">{(items[index].name||'').split(' ').map(n=>n[0]).slice(0,2).join('')}</div><div className="meta"><div className="name">{items[index].name}</div><div className="role">{items[index].role||''}</div></div></div>
+        <blockquote>“{items[index].text}”</blockquote>
+      </article>
+    </div>
+  )
+}
+
+export default function TestimonialCarousel({ items = [], interval = 5000 }){
+  if(!items || items.length === 0) return null
+
+  const left = items.filter((_,i)=> i % 2 === 0)
+  const right = items.filter((_,i)=> i % 2 === 1)
+
+  while(left.length < right.length) left.push(...left.slice(0,1))
+  while(right.length < left.length) right.push(...right.slice(0,1))
+
+  return (
+    <div className="testi-carousel two-cols">
+      <div className="cols">
+        <Column items={left} interval={interval} />
+        <Column items={right.length? right : left} interval={interval} />
       </div>
     </div>
   )

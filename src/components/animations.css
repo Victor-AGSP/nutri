@@ -15,3 +15,9 @@
 @media (prefers-reduced-motion: reduce){
   .animate-on-scroll, .staggered > *{transition:none !important;transform:none !important;opacity:1 !important}
 }
+
+/* Letter-by-letter reveal (global) - avoid breaking words across lines */
+.animated-heading{display:inline-block;word-break:normal}
+.animated-heading .word{display:inline-block;white-space:nowrap;margin-right:0.25ch}
+.animated-heading .char{display:inline-block;opacity:0;transform:translateY(.35em);animation:charIn .42s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes charIn{to{opacity:1;transform:none}}

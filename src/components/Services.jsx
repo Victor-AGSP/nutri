@@ -61,11 +61,25 @@ const servicesList = [
 ]
 
 export default function Services(){
+  const heading = 'Nuestros Servicios'
+  function renderAnimated(text, step = 40){
+    let idx = 0
+    return text.split(' ').map((word, wi) => (
+      <span key={wi} className="word">
+        {word.split('').map((ch) => {
+          const i = idx++
+          return <span key={i} className="char" style={{ animationDelay: `${i * step}ms` }}>{ch}</span>
+        })}
+      </span>
+    ))
+  }
   return (
     <div className="services-page container">
       <AnimateOnScroll>
         <header className="services-header">
-          <h1>Nuestros Servicios</h1>
+          <h1 className="animated-heading" aria-label={heading}>
+            {renderAnimated(heading, 40)}
+          </h1>
           <p className="lead">Soluciones prácticas y personalizadas para mejorar tus hábitos alimenticios y alcanzar tus objetivos.</p>
         </header>
       </AnimateOnScroll>

@@ -30,9 +30,36 @@
 /* Mobile */
 @media (max-width: 880px){
   .menu-toggle{display:block}
-  .nav{position:fixed;top:64px;right:-100%;width:260px;height:calc(100vh - 64px);background:linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));backdrop-filter:blur(6px);box-shadow:-8px 0 30px rgba(2,6,23,0.3);flex-direction:column;padding:18px;gap:12px;transition:right .28s cubic-bezier(.2,.9,.3,1)}
-  .nav.open{right:0}
-  .nav a{padding:12px 14px;border-radius:10px}
+
+  /* backdrop */
+  /* backdrop sits below the header so the header remains visible */
+  .nav-backdrop{position:fixed;left:0;right:0;top:64px;bottom:0;background:rgba(0,0,0,0.38);backdrop-filter:blur(2px);z-index:990;opacity:1;transition:opacity .28s ease}
+
+  /* sliding panel */
+  .nav{
+    position:fixed;top:64px;right:0;left:auto;height:calc(100vh - 64px);width:min(340px,86%);
+    background:linear-gradient(180deg,rgba(6,18,28,0.98),rgba(8,30,46,0.96));
+    backdrop-filter:blur(6px);
+    box-shadow:-12px 0 48px rgba(2,6,23,0.55);
+    flex-direction:column;/* more top padding so options start lower */
+    padding:28px 48px 18px 28px;gap:12px;transition:transform .36s cubic-bezier(.2,.9,.3,1),opacity .28s ease;z-index:1000;
+    transform:translateX(100%);opacity:0;align-items:stretch;border-left:1px solid rgba(255,255,255,0.03);box-sizing:border-box;
+  }
+  .nav.open{transform:translateX(0);opacity:1}
+
+  /* improved links: left accent on active, larger touch targets */
+  .nav a{padding:14px 56px 14px 20px;border-radius:10px;font-size:1.02rem;width:100%;display:block;color:rgba(255,255,255,0.95);text-decoration:none;transition:background .18s ease, transform .12s ease}
+  .nav a{position:relative}
+  .nav a::after{content:'';position:absolute;right:18px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:transparent;transition:background .18s ease}
+  .nav a:hover{background:rgba(255,255,255,0.03);transform:translateX(-4px)}
+  .nav a.active{background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));box-shadow:inset 4px 0 0 rgba(255,209,102,0.08)}
+  .nav a + a{border-top:1px solid rgba(255,255,255,0.03)}
+
   .brand{font-size:1rem}
+
+  /* ensure backdrop hidden when nav closed */
+  .nav:not(.open) + .nav-backdrop{opacity:0;pointer-events:none}
 }
+
+.menu-toggle{z-index:1100}
 

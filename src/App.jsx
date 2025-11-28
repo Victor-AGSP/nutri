@@ -5,6 +5,8 @@ import { Routes, Route } from 'react-router-dom'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
 import { Suspense, lazy } from 'react'
+import WaButton from './components/WaButton'
+import ScrollToTop from './components/ScrollToTop'
 
 const Home = lazy(() => import('./components/Home'))
 const Services = lazy(() => import('./components/Services'))
@@ -14,6 +16,7 @@ const Contact = lazy(() => import('./components/Contact'))
 function App() {
   return (
     <div className="app-root">
+      <ScrollToTop />
       <Menu />
       <main className="app-main">
         <Suspense fallback={<div style={{padding:48,textAlign:'center'}}>Cargando...</div>}>
@@ -26,6 +29,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
+      <WaButton />
     </div>
   )
 }
