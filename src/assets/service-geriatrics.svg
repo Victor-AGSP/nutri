@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#fbfdff"/>
+  <rect x="60" y="60" width="1080" height="680" rx="18" fill="#f3f9fb"/>
+  <g fill="#0f3b43" font-family="sans-serif">
+    <text x="120" y="220" font-size="64" font-weight="700">Nutrición Geriátrica</text>
+    <text x="120" y="320" font-size="28">Cuidado nutricional para adultos mayores</text>
+  </g>
+</svg>

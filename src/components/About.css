@@ -7,7 +7,8 @@
 
 .about-pillers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:28px 0}
 .pillar{background:linear-gradient(180deg,rgba(25,154,150,0.06),rgba(25,154,150,0.02));padding:22px;border-radius:14px;box-shadow:0 12px 28px rgba(2,6,23,0.04);text-align:center}
-.pill-icon{font-size:28px;margin-bottom:8px}
+.pill-icon{font-size:28px;margin-bottom:8px;display:flex;align-items:center;justify-content:center}
+.pill-icon svg{width:40px;height:40px;color:var(--accent)}
 .pillar h3{margin:4px 0 8px}
 .pillar p{color:var(--muted)}
 

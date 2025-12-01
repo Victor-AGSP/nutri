@@ -3,9 +3,14 @@ import './Home.css'
 import './animations.css'
 import AnimateOnScroll from './AnimateOnScroll'
 import Repel from './Repel'
+import mealplan from '../assets/service-mealplan.svg'
+import apple from '../assets/food-apple.svg'
+import broccoli from '../assets/food-broccoli.svg'
+import carrot from '../assets/food-carrot.svg'
 import TestimonialCarousel from './TestimonialCarousel'
 import FAQ from './FAQ'
 import Newsletter from './Newsletter'
+import Icon from './Icon'
 
 export default function Home(){
   const heading = 'Alimenta tu vida: planes prácticos para sentirte mejor'
@@ -25,15 +30,17 @@ export default function Home(){
     ))
   }
   const features = [
-    {icon:'🥗', title:'Planes personalizados', text:'Menús que se adaptan a tus horarios y preferencias.'},
-    {icon:'📦', title:'Recetas saludables', text:'Recetas fáciles, rápidas y balanceadas para el día a día.'},
-    {icon:'📊', title:'Seguimiento de progreso', text:'Reportes y ajustes semanales para mantener resultados.'}
+    {icon:'plan', title:'Planes personalizados', text:'Menús que se adaptan a tus horarios y preferencias.'},
+    {icon:'recipe', title:'Recetas saludables', text:'Recetas fáciles, rápidas y balanceadas para el día a día.'},
+    {icon:'progress', title:'Seguimiento de progreso', text:'Reportes y ajustes semanales para mantener resultados.'}
   ]
 
   const tips = [
-    'Prioriza proteínas magras en cada comida',
-    'Incluye vegetales de varios colores',
-    'Mantente hidratado — agua primero',
+    {icon:'salad', title:'Proteínas magras', text:'Incluye pollo, pescado o legumbres para mantener saciedad y tono muscular.'},
+    {icon:'rainbow', title:'Plato colorido', text:'Varía verduras de distintos colores para obtener más vitaminas y fibra.'},
+    {icon:'water', title:'Hidratación', text:'Bebe agua a lo largo del día; reemplaza bebidas azucaradas por agua o infusiones.'},
+    {icon:'clock', title:'Rutina de comidas', text:'Mantén horarios regulares para estabilizar el apetito y energía.'},
+    {icon:'mindful', title:'Comer consciente', text:'Come despacio, disfruta cada bocado y detente cuando estés satisfecho.'}
   ]
 
   const testimonials = [
@@ -69,15 +76,15 @@ export default function Home(){
 
         <AnimateOnScroll className="hero-media fade-right">
           <div className="hero-illustration">
-            <img src="/images/service-mealplan.svg" alt="Ilustración nutrición" loading="lazy" />
+            <img src={mealplan} alt="Ilustración nutrición" loading="lazy" />
             <Repel className="decor decor-1" radius={180} strength={0.5}>
-              <img src="/images/food-apple.svg" alt="apple" loading="lazy" />
+              <img src={apple} alt="manzana" loading="lazy" />
             </Repel>
             <Repel className="decor decor-2" radius={160} strength={0.4}>
-              <img src="/images/food-broccoli.svg" alt="broccoli" loading="lazy" />
+              <img src={broccoli} alt="brocoli" loading="lazy" />
             </Repel>
             <Repel className="decor decor-3" radius={140} strength={0.45}>
-              <img src="/images/food-carrot.svg" alt="carrot" loading="lazy" />
+              <img src={carrot} alt="zanahoria" loading="lazy" />
             </Repel>
           </div>
         </AnimateOnScroll>
@@ -91,7 +98,7 @@ export default function Home(){
         <div className="features-grid">
           {features.map((f,i) => (
             <AnimateOnScroll key={f.title} className="feature card-hover" style={{transitionDelay:`${i*80}ms`}}>
-              <div className="feature-top"><div className="icon">{f.icon}</div><h3>{f.title}</h3></div>
+              <div className="feature-top"><div className="icon"><Icon name={f.icon} title={f.title} /></div><h3>{f.title}</h3></div>
               <p>{f.text}</p>
             </AnimateOnScroll>
           ))}
@@ -104,8 +111,12 @@ export default function Home(){
         </AnimateOnScroll>
         <div className="tips-grid">
           {tips.map((t,i)=> (
-            <AnimateOnScroll key={t} className="tip" style={{transitionDelay:`${i*60}ms`}}>
-              {t}
+            <AnimateOnScroll key={t.title} className="tip card-hover" style={{transitionDelay:`${i*60}ms`}}>
+              <div className="tip-icon" aria-hidden><Icon name={t.icon} title={t.title} /></div>
+              <div className="tip-body">
+                <h4 className="tip-title">{t.title}</h4>
+                <p className="tip-text">{t.text}</p>
+              </div>
             </AnimateOnScroll>
           ))}
         </div>

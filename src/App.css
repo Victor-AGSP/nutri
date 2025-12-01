@@ -46,8 +46,8 @@
 .app-root{display:flex;flex-direction:column;min-height:100vh;background:linear-gradient(180deg,#f8fbff,#ffffff)}
 .app-main{flex:1;padding:28px 0}
 
-/* Buttons */
-.btn-primary{background:#06b6d4;border:0;padding:10px 14px;border-radius:8px;color:#04203a;font-weight:700}
+/* Buttons: primary styling is defined in `index.css` to keep a single source of truth. */
+/* Keep ghost variant local adjustments if needed */
 .btn-ghost{background:transparent;border:1px solid rgba(4,32,58,0.08);padding:10px 14px;border-radius:8px}
 
 /* Utility */

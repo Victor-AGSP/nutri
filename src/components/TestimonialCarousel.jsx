@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import './TestimonialCarousel.css'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function Column({ items = [], interval = 5000 }){
   const [index, setIndex] = useState(0)
@@ -89,19 +90,27 @@ function Column({ items = [], interval = 5000 }){
     }, durationRef.current + 120)
   }
 
+  const variants = {
+    initial: { opacity: 0, y: 8 },
+    enter: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
+    exit: { opacity: 0, y: -8, transition: { duration: 0.36, ease: 'easeIn' } }
+  }
+
   return (
     <div ref={colRef} className={`testi-col ${animating ? 'anim' : ''}`}>
-      {prev !== null && (
-        <article className="card exit" key={"p"+prev} aria-hidden>
-          <div className="who"><div className="avatar">{(items[prev].name||'').split(' ').map(n=>n[0]).slice(0,2).join('')}</div><div className="meta"><div className="name">{items[prev].name}</div><div className="role">{items[prev].role||''}</div></div></div>
-          <blockquote>“{items[prev].text}”</blockquote>
-        </article>
-      )}
+      <AnimatePresence initial={false} mode="wait">
+        {prev !== null && (
+          <motion.article className="card exit" key={"p"+prev} aria-hidden initial="initial" animate="enter" exit="exit" variants={variants}>
+            <div className="who"><div className="avatar">{(items[prev].name||'').split(' ').map(n=>n[0]).slice(0,2).join('')}</div><div className="meta"><div className="name">{items[prev].name}</div><div className="role">{items[prev].role||''}</div></div></div>
+            <blockquote>“{items[prev].text}”</blockquote>
+          </motion.article>
+        )}
 
-      <article className={`card enter ${playEnter ? 'playing' : ''}`} key={"c"+index} aria-live="polite">
-        <div className="who"><div className="avatar">{(items[index].name||'').split(' ').map(n=>n[0]).slice(0,2).join('')}</div><div className="meta"><div className="name">{items[index].name}</div><div className="role">{items[index].role||''}</div></div></div>
-        <blockquote>“{items[index].text}”</blockquote>
-      </article>
+        <motion.article className={`card enter ${playEnter ? 'playing' : ''}`} key={"c"+index} aria-live="polite" initial="initial" animate="enter" exit="exit" variants={variants}>
+          <div className="who"><div className="avatar">{(items[index].name||'').split(' ').map(n=>n[0]).slice(0,2).join('')}</div><div className="meta"><div className="name">{items[index].name}</div><div className="role">{items[index].role||''}</div></div></div>
+          <blockquote>“{items[index].text}”</blockquote>
+        </motion.article>
+      </AnimatePresence>
     </div>
   )
 }

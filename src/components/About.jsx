@@ -1,13 +1,14 @@
 import './About.css'
 import './animations.css'
 import AnimateOnScroll from './AnimateOnScroll'
+import Icon from './Icon'
 
 export default function About(){
   const heading = 'Transformando la relación con la comida'
   const pillars = [
-    {icon:'🎯', title:'Misión', text:'Ayudar a las personas a crear hábitos alimentarios sostenibles y realistas.'},
-    {icon:'🔭', title:'Visión', text:'Ser referentes en nutrición práctica y acompañamiento a largo plazo.'},
-    {icon:'🤝', title:'Valores', text:'Empatía, evidencia científica y soluciones personalizadas.'}
+    {icon:'plan', title:'Misión', text:'Ayudar a las personas a crear hábitos alimentarios sostenibles y realistas.'},
+    {icon:'rainbow', title:'Visión', text:'Ser referentes en nutrición práctica y acompañamiento a largo plazo.'},
+    {icon:'check', title:'Valores', text:'Empatía, evidencia científica y soluciones personalizadas.'}
   ]
 
   const team = [
@@ -53,7 +54,7 @@ export default function About(){
       <div className="about-pillers">
         {pillars.map((p,i)=> (
           <AnimateOnScroll key={p.title} className="pillar card-hover" style={{transitionDelay:`${i*80}ms`}}>
-            <div className="pill-icon">{p.icon}</div>
+            <div className="pill-icon"><Icon name={p.icon} title={p.title} /></div>
             <h3>{p.title}</h3>
             <p>{p.text}</p>
           </AnimateOnScroll>

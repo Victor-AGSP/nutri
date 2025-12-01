@@ -3,6 +3,8 @@
 .footer-inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;justify-content:space-between;align-items:center;font-size:0.95rem;gap:12px}
 .footer-links a{color:rgba(255,255,255,0.95);text-decoration:none;padding-left:6px;transition:color .18s ease, transform .12s ease}
 .footer-links a:hover{color:var(--accent);transform:translateY(-2px)}
+.heart-inline{display:inline-flex;align-items:center;margin:0 6px;color:#ffd166}
+.heart-inline svg{width:16px;height:16px}
 
 /* subtle social placeholder */
 .footer-social{display:flex;gap:10px}

@@ -9,6 +9,7 @@
 .service-media img{width:100%;height:100%;object-fit:cover;display:block}
 .service-top{display:flex;align-items:center;gap:12px}
 .service-icon{width:54px;height:54px;border-radius:10px;background:linear-gradient(180deg,#06b6d4,#0891b2);display:inline-flex;align-items:center;justify-content:center;color:white;font-size:22px}
+.service-icon svg{width:22px;height:22px;display:block}
 .service-card h3{margin:0;font-size:1.05rem}
 .price{margin-left:auto;color:var(--muted);font-weight:700}
 .service-desc{margin:12px 0;color:#334454}

@@ -1,6 +1,16 @@
 import './Services.css'
 import './animations.css'
 import AnimateOnScroll from './AnimateOnScroll'
+import Icon from './Icon'
+import svcEval from '../assets/service-eval.svg'
+import svcMealplan from '../assets/service-mealplan.svg'
+import svcWeight from '../assets/service-weight.svg'
+import svcSports from '../assets/service-sports.svg'
+import svcKids from '../assets/service-kids.svg'
+import svcWorkshops from '../assets/service-workshops.svg'
+import svcPrenatal from '../assets/service-prenatal.svg'
+import svcGeriatrics from '../assets/service-geriatrics.svg'
+import svcOnline from '../assets/service-online.svg'
 
 const servicesList = [
   {
@@ -85,23 +95,51 @@ export default function Services(){
       </AnimateOnScroll>
 
       <section className="services-grid">
-        {servicesList.map((s, i) => (
-          <AnimateOnScroll key={s.id} className="service-card card-hover" style={{transitionDelay:`${i*80}ms`}}>
-            <div className="service-media">
-              <img src={`/images/service-${s.id}.svg`} alt={s.title} loading="lazy" />
-            </div>
-            <div className="service-top">
-              <div className="service-icon" aria-hidden>🍎</div>
-              <h3>{s.title}</h3>
-              <div className="price">{s.price}</div>
-            </div>
-            <p className="service-desc">{s.desc}</p>
-            <div className="service-actions">
-              <button className="btn-primary interactive">Más info</button>
-              <button className="btn-ghost interactive">Reservar</button>
-            </div>
-          </AnimateOnScroll>
-        ))}
+        {/* map service id to imported images so bundler serves them reliably */}
+        {/**/}
+        {servicesList.map((s, i) => {
+          const mapIcon = {
+            eval: 'calendar',        // evaluación / cita
+            mealplan: 'salad',       // planes / comida
+            weight: 'progress',      // control de peso / progreso
+            sports: 'barbell',       // nutrición deportiva
+            kids: 'family',          // nutrición pediátrica (familia)
+            workshops: 'recipe',     // talleres y cocina
+            prenatal: 'heart',       // asesoría prenatal (cuidado)
+            geriatrics: 'leaf',      // nutrición geriátrica (bienestar)
+            online: 'chat'           // coaching online
+          }
+          const iconName = mapIcon[s.id] || 'plan'
+          const serviceImgs = {
+            eval: svcEval,
+            mealplan: svcMealplan,
+            weight: svcWeight,
+            sports: svcSports,
+            kids: svcKids,
+            workshops: svcWorkshops,
+            prenatal: svcPrenatal,
+            geriatrics: svcGeriatrics,
+            online: svcOnline
+          }
+
+          return (
+            <AnimateOnScroll key={s.id} className="service-card card-hover" style={{transitionDelay:`${i*80}ms`}}>
+              <div className="service-media">
+                <img src={serviceImgs[s.id]} alt={s.title} loading="lazy" />
+              </div>
+              <div className="service-top">
+                <div className="service-icon" aria-hidden><Icon name={iconName} title={s.title} /></div>
+                <h3>{s.title}</h3>
+                <div className="price">{s.price}</div>
+              </div>
+              <p className="service-desc">{s.desc}</p>
+              <div className="service-actions">
+                <button className="btn-primary interactive">Más info</button>
+                <button className="btn-ghost interactive">Reservar</button>
+              </div>
+            </AnimateOnScroll>
+          )
+        })}
       </section>
     </div>
   )
